@@ -55,7 +55,7 @@ public:
 };
 
 // 当使用类的指针调用成员函数时，普通函数由指针类型决定，而虚函数由指针指向的实际类型决定
-int main() {
+i
   // Benz *benz = new Car();  // 编译失败，car是抽象类，无法实例化
   Car *benz = new Benz();
   benz->Start();

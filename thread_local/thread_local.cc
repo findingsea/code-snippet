@@ -6,7 +6,7 @@
 #include <sstream>
 using namespace std;
 void GetCount() {
-  // count贯穿thread的声明周期
+  // count贯穿thread的生命周期
   thread_local int count = 0;
   ostringstream ostr;
   ostr << "Thread id: " << this_thread::get_id() << " " << count++ << endl;
