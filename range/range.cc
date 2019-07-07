@@ -43,4 +43,7 @@ int main() {
   for (auto &r : range_set) {
     cout << "[" << r.min << ", " << r.max << "]" << endl;
   }
+
+  cout << "r1 < r3: " << (r1 < r3) << endl;
+  cout << "r3 < r1: " << (r3 < r1) << endl;
 }
