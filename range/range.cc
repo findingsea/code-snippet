@@ -39,7 +39,7 @@ int main() {
   Range r3(1, 1);
   range_set.insert(r1);
   range_set.insert(r2);
-  range_set.insert(r3);  
+  range_set.insert(r3);
   for (auto &r : range_set) {
     cout << "[" << r.min << ", " << r.max << "]" << endl;
   }
