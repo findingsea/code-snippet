@@ -7,6 +7,7 @@ using namespace std;
 
 struct TrieNode {
   bool is_key = false;
+  uint32_t count = 0;
   shared_ptr<TrieNode> children[ALPHABET_SIZE];
 };
 
@@ -22,6 +23,7 @@ public:
         node->children[key[i] - 'a'] = make_shared<TrieNode>();
       }
       node = node->children[key[i] - 'a'];
+      ++node->count;
     }
     node->is_key = true;
   }
