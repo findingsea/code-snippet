@@ -10,7 +10,21 @@ void PrintVector(vector<int> &ve) {
 }
 
 void SehllSort(vector<int> &ve) {
-
+  int d = ve.size();
+  while (d > 1) {
+    d /= 2;
+    for (int x = 0; x < ve.size(); x += d) {
+      for (int i = x; i < ve.size(); i += d) {
+        auto key = ve[i];
+        auto j = i - d;
+        while (j >= 0 && ve[i] < ve[j]) {
+          ve[j + d] = ve[j];
+          j -= d;
+        }
+        ve[j + d] = x;
+      }
+    }
+  }
 }
 
 int main() {
