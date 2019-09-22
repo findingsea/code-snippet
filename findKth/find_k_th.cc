@@ -16,17 +16,41 @@ void Swap(vector<int> &ve, int i, int j) {
   ve[j] = temp;
 }
 
-int FindKth(vector<int> &ve, int i, int j, int k) {
-  int pivot = (i + j) / 2;
-  Swap(ve, i, pivot);
-  pivot = i;
-  for (int idx = i + 1; idx <= j; ++idx) {
-    if (ve[idx] < ve[pivot]) {
-      Swap(ve, pivot + 1, idx);
-      Swap(ve, pivot, pivot + 1);
-      ++pivot;
-    }
+int Partition(vector<int> &ve, int left, int right) {
+  int pivot = right;
+  --right;
+  while (left < right) {
+    while (ve[left] < ve[pivot] && left < right) ++left;
+    while (ve[pivot] < ve[right] && left < right) --right;
+    std::swap(ve[left], ve[right]);
   }
+  if (ve[left] >= ve[pivot]) {
+    std::swap(ve[left], ve[pivot]);
+    pivot = left;
+  }
+  return pivot;
+}
+
+int PartitionLarge(vector<int> &ve, int left, int right) {
+  cout << "--- PartitionLarge ---" << endl;
+  int pivot = right;
+  --right;
+  while (left < right) {
+    while (ve[left] >= ve[pivot] && left < right) ++left;
+    while (ve[pivot] >= ve[right] && left < right) --right;
+    std::swap(ve[left], ve[right]);
+    PrintVector(ve);
+    cout << "pivot " << pivot << endl;
+  }
+  if (ve[left] <= ve[pivot]) {
+    std::swap(ve[left], ve[pivot]);
+  }
+  pivot = left;
+  return pivot;
+}
+
+int FindKth(vector<int> &ve, int i, int j, int k) {
+  int pivot = PartitionLarge(ve, i, j);
   if (k == pivot) {
     return ve[k];
   } else if (k < pivot) {
@@ -37,6 +61,7 @@ int FindKth(vector<int> &ve, int i, int j, int k) {
 }
 
 int main() {
-  vector<int> ve = {4, 5, 3, 2, 6, 9, 1, 8, 7};
-  cout << FindKth(ve, 0, ve.size() - 1, 5) << endl;
+  vector<int> ve = {3,3,3,3,3};
+  // vector<int> ve = {5,2,4,1,3,6,0};
+  cout << FindKth(ve, 0, ve.size() - 1, 1) << endl;
 }
